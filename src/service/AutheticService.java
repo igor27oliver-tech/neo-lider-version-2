@@ -18,14 +18,14 @@ public class AutheticService {
 
         this.userList = userList;
 
-        // ✅ CRIAR O REPOSITORY PRIMEIRO
+
         ItemRepository itemRepository = new ItemRepository();
 
-        // ✅ PASSAR PARA O SERVICE
+
         ItemService itemService = new ItemService(itemRepository);
         UserService userService = new UserService(userList);
 
-        // ✅ CRIAR CONTROLLER
+
         AdmController admController =
                 new AdmController(itemService, userService);
 
@@ -35,10 +35,16 @@ public class AutheticService {
 
     public Cargo login(String username, String password) {
 
-        for (User u : userList.getUserList()) {
+        String usernameDigitado = username.trim();
+        String passwordDigitada = password.trim();
 
-            if (u.getUsername().equals(username)
-                    && u.getPassword().equals(password)) {
+        for (User u : userList.getUserList()) {
+            // para ver o que esta sendo comparado ->
+           // System.out.println("Digitado: " + usernameDigitado + " | " + passwordDigitada);
+           // System.out.println("Banco: " + u.getUsername() + " | " + u.getPassword());
+
+            if (u.getUsername().trim().equalsIgnoreCase(usernameDigitado)
+                    && u.getPassword().trim().equals(passwordDigitada)) {
 
                 Cargo cargo = u.getCargo();
                 encaminhamentoSetoresService.redirect(cargo);
@@ -47,5 +53,4 @@ public class AutheticService {
         }
 
         return null;
-    }
-}
+    }}

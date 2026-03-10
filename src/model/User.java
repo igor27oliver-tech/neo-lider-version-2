@@ -28,4 +28,10 @@ public class User {
         return "Usuário: " + username +
                 " | Cargo: " + cargo;
     }
+
+    public String getNome() { return username;}
+
+    public String getSenha() {
+        return password;
+    }
 }

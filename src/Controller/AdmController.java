@@ -103,26 +103,12 @@ public class AdmController {
 
     private void buscarUsuarioPorId() {
 
-        int id = lerInteiro("Digite o ID:");
-        String resultado = userService.buscarId(id);
-        JOptionPane.showMessageDialog(null, resultado);
+        System.out.println("busucas user id");
     }
 
     private void listarPorCargo() {
 
-        Cargo cargo = (Cargo) JOptionPane.showInputDialog(
-                null,
-                "Escolha o cargo:",
-                "Cargo",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                Cargo.values(),
-                Cargo.values()[0]
-        );
-
-        if (cargo != null) {
-            JOptionPane.showMessageDialog(null, userService.listaSetor(cargo));
-        }
+     JOptionPane.showMessageDialog(null,"listar por cargo");
     }
 
     // ========================= ESTOQUE =========================
@@ -161,9 +147,11 @@ public class AdmController {
         String descricao = JOptionPane.showInputDialog("Descrição:");
         int id = lerInteiro("ID:");
         int quantidade = lerInteiro("Quantidade:");
+        String categoria = JOptionPane.showInputDialog("Categoria:");
 
-        itemService.addItem(nome, descricao, id, quantidade);
-        JOptionPane.showMessageDialog(null, "Item adicionado com sucesso!");
+        itemService.addItem(nome, descricao, id, categoria, quantidade);
+
+
     }
 
     private void excluirItem() {

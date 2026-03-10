@@ -22,12 +22,16 @@ public static void main(String[] args) {
         UserService userService = new UserService(userRepository);
         ItemService itemService = new ItemService(itemRepository);
 
+
+
+
+
         // 3️⃣ Criar Controller
         LoginController loginController = new LoginController(userRepository);;
         loginController.loginInP();
 
 
-        // 4️⃣ Iniciar sistema
+
 
     }
 

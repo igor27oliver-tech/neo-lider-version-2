@@ -13,13 +13,18 @@ public class ItemService {
 
 
     public String listarEstoque() {
-        StringBuilder estoque = new StringBuilder();
-        for (Item item : itemRepository.getItems()) {
-            estoque.append(item.toString())
-                    .append("\n");
+
+            StringBuilder estoque = new StringBuilder();
+
+            for (Item item : itemRepository.getItems()) {
+                estoque.append(item.toString()).append("\n");
+            }
+
+            return estoque.toString();
         }
-        return estoque.toString();
-    }
+
+
+
     public String filterId (int id){
         StringBuilder estoque = new StringBuilder();
         for (Item item : itemRepository.getItems()) {
@@ -27,7 +32,7 @@ public class ItemService {
                 estoque.append(item.toString());
                 return  estoque.toString();
             }
-        } return null;
+        } return  "Item não encontrado.";
     }
 
     public String filterName(String name) {
@@ -40,15 +45,14 @@ public class ItemService {
         return estoque.toString();
 
     }
-    public void addItem(String name, String description, int id, String category,int quantity) {
-        itemRepository.getItems().add(new Item(name, description, id, category, quantity));
+    public void addItem(String name, String description, int id,String category, int quantity) {
+       itemRepository.addItem(new Item(name, description, id,category, quantity));
     }
 
 
     public void excluirItem(String name) {
-        itemRepository.getItems().removeIf(item -> item.getName().toLowerCase().equals(name.toLowerCase()));
+        itemRepository.deleteItem(name);
     }
 
-    public void addItem(String nome, String descricao, int id, int qtd) {
-    }
+
 }
